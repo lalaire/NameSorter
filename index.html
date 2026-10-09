@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>People Records Dashboard</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="logo">
+        <div class="logo-box">PR</div>
+        <div>
+          <h2>People Records</h2>
+          <span>Data Dashboard</span>
+        </div>
+      </div>
+
+      <nav>
+        <a class="active" href="#">
+          <span>▦</span>
+          Records
+        </a>
+
+        <a href="#">
+          <span>◉</span>
+          Overview
+        </a>
+
+        <a href="#">
+          <span>⚙</span>
+          Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <small>Connected to</small>
+        <strong>Google Sheets</strong>
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <header class="topbar">
+
+        <div>
+          <p class="small-title">DATABASE</p>
+          <h1>People Records</h1>
+        </div>
+
+        <button class="refresh-btn" onclick="loadData()">
+          ↻ Refresh Data
+        </button>
+
+      </header>
+
+
+      <!-- STATISTICS -->
+      <section class="stats">
+
+        <div class="stat-box">
+          <span class="stat-label">TOTAL PEOPLE</span>
+          <strong id="totalRecords">0</strong>
+          <p>All records</p>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">AVERAGE AGE</span>
+          <strong id="averageAge">0</strong>
+          <p>Years</p>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">STUDENTS</span>
+          <strong id="studentCount">0</strong>
+          <p>Current students</p>
+        </div>
+
+        <div class="stat-box">
+          <span class="stat-label">PROFESSIONS</span>
+          <strong id="professionCount">0</strong>
+          <p>Different professions</p>
+        </div>
+
+      </section>
+
+
+      <!-- DATA PANEL -->
+      <section class="data-panel">
+
+        <div class="panel-header">
+
+          <div>
+            <h2>Record Directory</h2>
+            <p>Browse and filter the people in the database.</p>
+          </div>
+
+          <div class="result-count">
+            Showing <strong id="visibleCount">0</strong> records
+          </div>
+
+        </div>
+
+
+        <!-- FILTERS -->
+        <div class="filters">
+
+          <div class="search-box">
+            <span>⌕</span>
+
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by name..."
+              oninput="filterData()"
+            >
+          </div>
+
+
+          <select id="genderFilter" onchange="filterData()">
+            <option value="">All genders</option>
+          </select>
+
+
+          <select id="ageFilter" onchange="filterData()">
+            <option value="">All age groups</option>
+          </select>
+
+
+          <select id="professionFilter" onchange="filterData()">
+            <option value="">All professions</option>
+          </select>
+
+        </div>
+
+
+        <!-- TABLE -->
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>NAME</th>
+                <th>AGE</th>
+                <th>AGE GROUP</th>
+                <th>GENDER</th>
+                <th>PROFESSION</th>
+              </tr>
+            </thead>
+
+            <tbody id="tableBody">
+            </tbody>
+
+          </table>
+
+          <div id="loading" class="message">
+            Loading records...
+          </div>
+
+          <div id="error" class="message error-message">
+          </div>
+
+          <div id="noResults" class="message">
+            No records found.
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
